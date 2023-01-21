@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { Metrics } from './entities/Metrics.entity';
 import { Organization } from './entities/Organization.entity';
 import { Repositories } from './entities/Repositories.entity';
 import { Tribe } from './entities/Tribe.entity';
@@ -17,7 +18,7 @@ import { OrganizationsModule } from './organizations/organizations.module';
       username: 'admin',
       password: 'Emp9ZWJw',
       database: 'bdnttdata',
-      entities: [Organization, Tribe, Repositories],
+      entities: [Organization, Tribe, Repositories, Metrics],
       synchronize: true,
     }),
     MockModule,

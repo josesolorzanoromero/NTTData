@@ -1,4 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
+import { Metrics } from './Metrics.entity';
 import { Tribe } from './Tribe.entity';
 
 @Entity({ name: 'repositories' })
@@ -13,4 +21,7 @@ export class Repositories {
   create_time: Date;
   @ManyToOne(() => Tribe, (tribe) => tribe.repositories)
   id_tribe: Tribe;
+  @OneToOne(() => Metrics)
+  @JoinColumn()
+  metrics: Metrics;
 }
