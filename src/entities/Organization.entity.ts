@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Tribe } from './Tribe.entity';
 
 @Entity({ name: 'organization' })
 export class Organization {
@@ -8,4 +9,6 @@ export class Organization {
   name: string;
   @Column({ nullable: false })
   status: number;
+  @OneToMany(() => Tribe, (tribe) => tribe.id_organization)
+  tribes: Tribe[];
 }
