@@ -27,7 +27,7 @@ export class TribesService {
           },
         },
       },
-      relations: { repositories: true },
+      relations: { repositories: { metrics: true }, id_organization: true },
     });
 
     if (!tribe) {
@@ -39,27 +39,26 @@ export class TribesService {
 
     const dataRepositories = tribe.repositories.map((item) => {
       const dataExtarnalRepository = this.mockService.getOne(item.id);
-      console.log('dataExtarnalRepository');
-      console.log(dataExtarnalRepository);
       return {
-        ...item,
-        state:
+        // ...item,
+        id: item.id,
+        name: item.name,
+        tribe: tribe.name,
+        organization: tribe.id_organization.name,
+        coverage: `${item.metrics.coverage}%`,
+        code_smells: item.metrics.code_smells,
+        bugs: item.metrics.bugs,
+        vulnerabilities: item.metrics.vulnerabilities,
+        hotspot: item.metrics.hotspot,
+        verificationState:
           dataExtarnalRepository.state == 604
             ? 'Verificado'
             : dataExtarnalRepository.state == 605
             ? 'En espera'
             : 'Aprobado',
+        state: item.status == 'A' ? 'Habilitado' : 'Archivado',
       };
     });
-
-    const dataMapped = {
-      id: tribe.id,
-      name: tribe.name,
-      status: tribe.status,
-      repositories: dataRepositories,
-    };
-
-    // return dataExtarnalRepository;
-    return dataMapped;
+    return { repositories: dataRepositories };
   }
 }
