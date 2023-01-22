@@ -8,7 +8,6 @@ export class GendercsvService {
   async getCSV(id: number) {
     const data = await this.tribeService.getMetrics(id);
     const { convertArrayToCSV } = require('convert-array-to-csv');
-    const converter = require('convert-array-to-csv');
     const header = [
       'id',
       'name',

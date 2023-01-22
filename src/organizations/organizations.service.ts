@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Organization } from 'src/entities/Organization.entity';
 import { OrganizationInterface } from './interfaces/Organization.interface';
+import { OrganizationDto } from './dto/Organization.dto';
 
 @Injectable()
 export class OrganizationsService {
@@ -21,7 +22,7 @@ export class OrganizationsService {
     return organization;
   }
 
-  create(organizationData) {
+  create(organizationData: OrganizationDto) {
     const newData = this.organizationRepo.create({
       ...organizationData,
     });

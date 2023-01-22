@@ -10,7 +10,7 @@ import {
   ParseIntPipe,
   Delete,
 } from '@nestjs/common';
-import { CreateOrganizationDto } from './dtos/CreateOrganization.dto';
+import { OrganizationDto } from './dto/Organization.dto';
 import { OrganizationsService } from './organizations.service';
 
 @Controller('organizations')
@@ -28,12 +28,18 @@ export class OrganizationsController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  create(@Body() createOrganizationDto: CreateOrganizationDto) {
-    return this.organizationsService.create(createOrganizationDto);
+  create(@Body() data: OrganizationDto) {
+    console.log('data');
+    console.log(data);
+    return this.organizationsService.create(data);
   }
 
   @Put(':id')
-  async update(@Param('id', ParseIntPipe) id: number, @Body() data: any) {
+  @UsePipes(ValidationPipe)
+  async update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() data: OrganizationDto,
+  ) {
     return this.organizationsService.update(id, data);
   }
 
