@@ -1,6 +1,12 @@
 import { Injectable, HttpException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { MoreThan, MoreThanOrEqual, Repository } from 'typeorm';
+import {
+  Between,
+  LessThan,
+  MoreThan,
+  MoreThanOrEqual,
+  Repository,
+} from 'typeorm';
 import { Tribe } from 'src/entities/Tribe.entity';
 import { MockService } from 'src/mock/mock.service';
 
@@ -22,6 +28,7 @@ export class TribesService {
         id,
         repositories: {
           state: 'E',
+          create_time: Between(new Date('2023-1-1'), new Date('2023-12-31')),
           metrics: {
             coverage: MoreThan(75),
           },
