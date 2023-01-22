@@ -8,6 +8,7 @@ import { Repositories } from './entities/Repositories.entity';
 import { Tribe } from './entities/Tribe.entity';
 import { MockModule } from './mock/mock.module';
 import { OrganizationsModule } from './organizations/organizations.module';
+import { TribesModule } from './tribes/tribes.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { OrganizationsModule } from './organizations/organizations.module';
     }),
     MockModule,
     OrganizationsModule,
+    TribesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
