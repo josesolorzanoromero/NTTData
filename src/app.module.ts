@@ -9,6 +9,7 @@ import { Tribe } from './entities/Tribe.entity';
 import { MockModule } from './mock/mock.module';
 import { OrganizationsModule } from './organizations/organizations.module';
 import { TribesModule } from './tribes/tribes.module';
+import { GendercsvModule } from './gendercsv/gendercsv.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { TribesModule } from './tribes/tribes.module';
     MockModule,
     OrganizationsModule,
     TribesModule,
+    GendercsvModule,
   ],
   controllers: [AppController],
   providers: [AppService],
